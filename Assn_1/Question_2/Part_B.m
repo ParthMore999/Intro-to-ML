@@ -1,4 +1,4 @@
-%% Question 2, Part B: ERM Classification with Asymmetric Loss
+
 clear all; close all; clc;
 
 load('q2_data.mat');
