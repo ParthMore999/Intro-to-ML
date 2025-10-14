@@ -1,4 +1,4 @@
-%% Question 3: HAR Dataset - Optimized
+
 clear all; close all; clc;
 
 X_train = load('X_train.txt');
