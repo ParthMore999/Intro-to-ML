@@ -1,4 +1,4 @@
-%% Question 3: Wine Quality - Red Wine
+
 clear all; close all; clc;
 
 red_wine = readtable('winequality-red.csv');
