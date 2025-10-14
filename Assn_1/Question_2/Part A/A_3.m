@@ -1,4 +1,4 @@
-%% Question 2, Part A.3: Visualization
+
 clear all; close all; clc;
 
 load('q2_data.mat');
