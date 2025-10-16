@@ -1,3 +1,4 @@
+
 clear all; close all; clc;
 
 load('classification_data.mat');
@@ -14,6 +15,10 @@ Sb = (mu1_est - mu0_est) * (mu1_est - mu0_est)';
 [~, max_idx] = max(diag(D));
 w_LDA = V(:, max_idx);
 w_LDA = w_LDA / norm(w_LDA);
+
+fprintf('Fisher LDA Results:\n');
+fprintf('==================\n');
+fprintf('LDA projection vector w_LDA = [%.4f, %.4f, %.4f]^T\n', w_LDA(1), w_LDA(2), w_LDA(3));
 
 projections = data * w_LDA;
 
@@ -44,6 +49,11 @@ optimal_tau = tau_values(min_idx_LDA);
 optimal_TPR_LDA = TPR_LDA(min_idx_LDA);
 optimal_FPR_LDA = FPR_LDA(min_idx_LDA);
 
+fprintf('Optimal threshold tau = %.4f\n', optimal_tau);
+fprintf('Minimum P(error) = %.4f\n', min_error_LDA);
+fprintf('TPR at optimum = %.4f\n', optimal_TPR_LDA);
+fprintf('FPR at optimum = %.4f\n', optimal_FPR_LDA);
+
 load('partA3_results.mat');
 load('partB_results.mat');
 load('partA2_results.mat');
@@ -68,6 +78,12 @@ legend('True Model', 'Naive Bayes', 'Fisher LDA', ...
        'Random', 'Location', 'southeast');
 grid on;
 axis([0 1 0 1]);
+
+fprintf('\nComparison Summary:\n');
+fprintf('==================\n');
+fprintf('True Model: P(error) = %.4f\n', min_error);
+fprintf('Naive Bayes: P(error) = %.4f\n', min_error_NB);
+fprintf('Fisher LDA: P(error) = %.4f\n', min_error_LDA);
 
 save('partC_results.mat', 'TPR_LDA', 'FPR_LDA', 'P_error_LDA', 'min_error_LDA', ...
      'optimal_tau', 'optimal_TPR_LDA', 'optimal_FPR_LDA', 'w_LDA');
